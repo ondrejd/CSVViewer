@@ -1,0 +1,45 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+html, body {
+	background-color: #EAEFF2;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+}
+
+header {
+	border-bottom: 1px solid #424F5A;
+	padding: 0.5em 0 0.5em 0.5em;
+}
+header h1 {
+	background-image: url('icon-64.png');
+	background-position: left center;
+	background-repeat: no-repeat;
+	margin: 0 0 0 0;
+	padding: 1em 0px 1em 72px;
+}
+
+div.main {}
+div.main ul {
+	list-style: none;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+}
+div.main ul li {
+	background-color: #00539F;
+	color: #EAEFF2;
+	margin: 1px 0 1px 0;
+	padding: 0.5em 0em 0.5em 1em;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+div.main ul li:hover {
+	background-color: #0095DD;
+	cursor: pointer;
+}
+div.main ul li.separator {
+	background-color: #424F5A;
+	height: 1px;
+	padding: 0 0 0 0;
+}
