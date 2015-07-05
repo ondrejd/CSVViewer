@@ -5,7 +5,6 @@
 /**
  * Handles clicks on menu.
  * @param {DOMEvent} aEvent
- * @returns {void}
  */
 function onMenuClick(aEvent) {
 	if (aEvent.target.nodeName != 'LI') {
@@ -22,7 +21,6 @@ function onMenuClick(aEvent) {
 
 // Register event listeners when panel is showing.
 addon.port.on('show', function onShow() {
-	console.log('[toolbarpanel.js].show()');
 	var menu = document.getElementById('menu');
 	if (menu) {
 		menu.addEventListener('click', onMenuClick, false);
@@ -31,7 +29,6 @@ addon.port.on('show', function onShow() {
 
 // Remove registered event listeners when panel is hiding.
 addon.port.on('hide', function onHide() {
-	console.log('[toolbarpanel.js].hide()');
 	var menu = document.getElementById('menu');
 	if (menu) {
 		menu.removeEventListener('click', onMenuClick, false);
