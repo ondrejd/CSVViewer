@@ -76,6 +76,7 @@ md-icon.dp48 { font-size: 48px; width: 48px; height: 48px; }
 md-icon.dp32 { font-size: 32px; width: 32px; height: 32px; }
 md-icon.dp24 { font-size: 24px; width: 24px; height: 24px; }
 md-icon.dp18 { font-size: 18px; width: 18px; height: 18px; }
+md-icon.dp16 { font-size: 16px; width: 16px; height: 16px; }
 md-icon.disabled { color: rgba(0, 0, 0, 0.24); }
 
 /**
@@ -97,4 +98,351 @@ body {
 }
 b {
 	font-weight: 700;
+}
+
+/**
+ * Header
+ */
+header {
+	background-color: #E91E63;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.26);
+	color: #FFFFFF;
+	text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.26);
+	height: 64px;
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+}
+header h1 {
+	background-position: left center;
+	background-repeat: no-repeat;
+	font-size: 32px;
+	margin: 0 0 0 0;
+	padding: 24px 0 0 24px;
+}
+
+/**
+ * Dialogs
+ */
+.dialog {
+	background-color: #FFFFFF;
+	border-radius: 2px 2px 2px 2px;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.26);
+	margin: 50px auto 0px auto;
+	min-width: 600px;
+	width: 50%;
+	z-index: 1;
+}
+.dialog header, .dialog .content, .dialog footer {
+	padding: 0 48px 0 48px;
+}
+.dialog header h2 {
+	font-size: 26pt;
+	font-weight: 400;
+}
+.dialog.errorDialog header {
+	border-bottom: #F44336 6px solid;
+}
+.dialog.infoDialog header {
+	opacity: 0.54;
+}
+.dialog div.content > p {
+	color: #000000;
+	font-size: 23px;
+	line-height: 1.1;
+	opacity: 0.54;
+	padding: 10px 20px 10px 20px;
+}
+.dialog footer {
+	padding-bottom: 20px;
+	text-align: right;
+}
+
+/**
+ * Buttons
+ */
+button {
+	background-color: transparent;
+	border: 0px none;
+	color: #2196f3;
+	cursor: pointer;
+	font-size: 23px;
+	padding: 0 0 0 0 !important;
+	text-transform: uppercase;
+}
+button:hover {
+	text-decoration: underline;
+}
+
+/**
+ * Data tables
+ */
+table.data {
+	border-collapse: separate; 
+	border-radius: 2px 2px 2px 2px;
+	border-spacing: 0px;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.26);
+	margin: 20px auto 20px auto;
+	width: 94%;
+}
+/* Some common styles */
+table.data th, table.data td {
+	border-bottom: 1px solid #E0E0E0;
+	text-align: left;
+}
+table.data th.check, table.data td.check {
+	padding: 0 0 0 0 !important;
+	width: 66px;
+}
+table.data th.control, table.data td.control { width: 66px; }
+table.data thead th.num, table.data tbody td.num {
+	padding-right: 24px;
+	text-align: right;
+}
+/* Thead */
+table.data thead tr { height: 56px; }
+table.data th span.label {
+	font-size: 10pt;
+	font-weight: 200;
+	color: rgba(0, 0, 0, 0.54);
+}
+/* Colored header row */
+table.data thead tr.coloredHeader {
+	background-color: #FCE4EC;
+	height: 64px;
+}
+table.data thead tr.coloredHeader td {
+	padding: 0px 18px 0px 18px !important;
+}
+table.data thead tr.coloredHeader .form {
+	height: 64px;
+	width: calc(100% - 120px);
+}
+table.data thead tr.coloredHeader .nav {
+	float: right;
+	padding: 16px 0 16px 0;
+	margin: 0 0 0 0;
+	height: 32px;
+	position: relative;
+	text-align: right;
+	top: 0px;
+	right: 0px;
+	width: 120px;
+}
+table.data thead tr.coloredHeader .nav span {
+	color: rgba(0, 0, 0, 0.54);
+	margin: 0 0 0 10px;
+}
+/* Thead > Sorted column */
+table.data thead th.sorted span {
+	color: rgba(0, 0, 0, 0.87);
+	font-weight: 200;
+}
+table.data thead th.sorted span.md-icon {
+	position: relative;
+	top: 2px;
+	transform: rotate(90deg);
+}
+table.data thead th.sorted span.label {
+	position: relative;
+	top: -5px;
+}
+/* Tbody */
+table.data tr {
+	background-color: #FFFFFF;
+	height: 48px;
+}
+table.data tbody tr:hover {
+	background-color: #EEEEEE;
+}
+table.data tbody td {
+	color: rgba(0, 0, 0, 0.87);
+}
+/* Tfoot */
+table.data tfoot tr { height: 56px; }
+table.data tfoot td { border-bottom: 0px none; }
+table.data tfoot td span.label {
+	color: rgba(0, 0, 0, 0.54);
+}
+table.data tfoot td {
+	font-size: 10pt;
+	font-weight: 200;
+	padding: 0px 24px 4px 0px;
+	text-align: right;
+}
+table.data tfoot td .md-icon { position: relative; top: 6px; }
+
+/**
+ * Checkboxes
+ */
+.checkbox-group {
+	display: block;
+	height: 18px;
+	left: 24px !important;
+	position: relative;
+	top: 0px !important;
+	width: 18px;
+}
+.checkbox-group input[type=checkbox] { display: none; }
+.checkbox-group label { cursor: pointer; }
+.checkbox-group label .box, .checkbox-group label .check {
+	display: block;
+	position: absolute;
+	left: 0;
+	-moz-transition-duration: .3s;
+	transition-duration: .3s
+}
+.checkbox-group label .ripple {
+	display: block;
+	position: absolute;
+	content: '';
+	background-color: rgba(0, 0, 0, 0.84);
+	left: -16px;
+	top: -16px;
+	height: 50px;
+	width: 50px;
+	border-radius: 100%;
+	z-index: 8;
+	opacity: 0;
+	margin: 0px;
+}
+.checkbox-group label .box {
+	border: 2px solid #6D6D6D;
+	border-radius: 2px 2px 2px 2px;
+	background: #FFFFFF;
+	height: 14px;
+	width: 14px;
+	z-index: 9;
+	-moz-transition-delay: .2s;
+	transition-delay: .2s
+}
+.checkbox-group label .check {
+	top: 0px;
+	left: 5px;
+	width: 6px;
+	height: 12px;
+	border: 2px solid #FFFFFF;
+	border-top: none;
+	border-left: none;
+	opacity: 0;
+	z-index: 10;
+	-moz-transform: rotate(180deg);
+	transform: rotate(180deg);
+	-moz-transition-delay: .3s;
+	transition-delay: .3s;
+}
+.checkbox-group input[type=checkbox]:checked ~ label .box {
+	border: 2px solid #4285F4;
+	height: 14px;
+	width: 14px;
+	background: #4285F4;
+}
+.checkbox-group input[type="checkbox"]:checked ~ label .check {
+	opacity: 1;
+	-moz-transform: scale(1) rotate(45deg);
+	transform: scale(1) rotate(45deg);
+}
+.checkbox-group input[type="checkbox"]:hover ~ label .ripple {
+	animation: 750ms ease 0s normal none 1 running rippleOff;
+}
+@keyframes rippleOff {
+	0% { opacity: 0; }
+	50% { opacity: 0.1; }
+	100% { opacity: 0; }
+}
+
+/* Correct checkboxes position */
+table.data th .checkbox-group, table.data td .checkbox-group {
+	left: 10px;
+	top: -11px;
+}
+
+/* Correct checkboxes color in hovered tbody rows */
+table.data tbody tr:hover .checkbox-group label .check {
+	border: 2px solid #EEEEEE;
+	border-top: none;
+	border-left: none;
+}
+
+/* TODO Rows with checked checkboxes #F5F5F5 */
+
+/**
+ * Rows count selector.
+ */
+.select-group {
+	display: inline-block;
+	margin: 0 0 0 6px;
+	padding: 0 0 0 0;
+}
+.select-group input {
+	-moz-appearance: none;
+	background-color: #FFFFFF;
+	border: 0px none;
+	display: inline-block;
+	font-family: "RobotoDraft", "Roboto", sans-serif;
+	font-size: 10pt;
+	height: 30px;
+	margin: 0 0 0 0;
+	color: rgba(0, 0, 0, 0.54);
+	padding: 0 0 0 0;
+	position: relative !important;
+	text-align: left;
+	width: 30px;
+}
+.select-group span.md-icon {
+	display: inline-block;
+	position: relative;
+	left: -10px;
+	top: 9px !important;
+	z-index: 1;
+}
+.select-group ul {
+	background-color: #FFFFFF;
+	border-radius: 2px 2px 2px 2px;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.26);
+	display: none;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	position: absolute;
+	width: 70px;
+	z-index: 12;
+}
+.select-group ul li {
+	background-color: #FFFFFF;
+	cursor: default;
+	font-family: "RobotoDraft", "Roboto", sans-serif;
+	font-size: 12pt;
+	height: 22px;
+	list-style: none;
+	padding: 8px 0px 0px 10px;
+	text-align: left;
+}
+.select-group ul li:hover {
+	background-color: #EEEEEE;
+}
+
+/**
+ * Snackbars (there should be just one snackbar at the moment).
+ */
+div.snackbar {
+	animation-duration: 0.5s;
+	animation-name: snackbarSlideIn;
+	background-color: #323232;
+	border-radius: 2px 2px 2px 2px;
+	bottom: 10px;
+	color: #FFFFFF;
+	height: 48px;
+	min-width: 288px;
+	max-width: 568px;
+	padding: 0 24px 0 24px;
+	position: fixed;
+	right: 10px;
+}
+div.snackbar p {
+	font-size: 14pt;
+	margin: 2px 0 0 0;
+	padding: 14px 0 14px 0;
+}
+@keyframes snackbarSlideIn {
+	from { bottom: -48px; }
+	to { bottom: 10px; }
 }
