@@ -3,3 +3,35 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 @import url("../common-style.css");
+
+/* Table 'Loading data...' message. */
+table.data tbody td.message {
+	font-size: 23px;
+	color: rgba(0, 0, 0, 0.54);
+	padding: 92px 0 112px 0;
+	text-align: center;
+}
+table.data tbody tr:hover td.message {
+	background-color: #FFFFFF;
+}
+
+/* Style for empty value */
+table.data tbody td span.empty-val {
+	color: rgba(0, 0, 0, 0.12);
+}
+
+/* Popup dialog for deleting selected table row(s). */
+#deleteRowsDialog {
+	background-color: #FAFAFA;
+	display: none;
+	left: 0px;
+	margin: 0 0 0 0;
+	position: absolute;
+	z-index: 11;
+}
+#deleteRowsDialog .content p {
+	padding: 28px 0 28px 0;
+}
+#deleteRowsCancelBtn { margin-right: 18px; }
+
+

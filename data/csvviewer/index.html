@@ -9,516 +9,162 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="initial-scale=1, width=device-width">
 		<title>CSVViewer</title>
+		<link href="../icon-16.png" type="image/png" rel="shortcut icon">
 		<link href="style.css" type="text/css" rel="stylesheet">
-		<script src="index.js"></script>
 	</head>
 	<body>
 		<header>
-			<h1>CsvViewer</h1>
+			<h1>CSVViewer</h1>
 		</header>
-		<div class="content">
-<!-- TEST DATA -->
-<table class="data">
-	<thead>
-		<tr class="coloredHeader">
-			<td colspan="10">
-				<nav class="nav">
-					<span class="md-icon dp32" id="deleteBtn" title="Delete selected rows">delete</span>
-				</nav>
-			</td>
-		</tr>
-		<tr>
-			<th class="check" scope="col">
-				<div class="checkbox-group">
-					<input type="checkbox" id="checkAll">
-					<label for="checkAll">
-						<span class="ripple"></span>
-						<span class="check"></span>
-						<span class="box"></span>
-					</label>
+		<div class="content" id="main">
+			<div id="intro-dialog" class="dialog">
+				<header>
+					<!--<h2>Open CSV file</h2>-->
+					<nav>
+						<ul role="navigation">
+							<li class="selected"><a href="#newCsvFileTab">New file</a></li>
+							<li><a href="#openCsvFileTab">Open file</a></li>
+							<li><a href="#recentFilesTab">Recent files</a></li>
+						</ul>
+					</nav>
+				</header>
+				<div class="content">
+					<div class="tab-container">
+						<div class="tab tab-active" id="newCsvFileTab">
+							<div class="tab-content">
+								<p>
+									Create new CSV document with:
+								</p>
+								<table class="form-table" style="width: 100%;">
+									<tr>
+										<td style="width: 200px;">Columns count:</td>
+										<td>
+											<input id="columnsCountInput" type="text" value="5">
+										</td>
+									</tr>
+									<tr>
+										<td style="width: 200px;">Rows count:</td>
+										<td>
+											<input id="rowsCountInput" type="text" value="5">
+										</td>
+									</tr>
+								</table>
+								<p>Advanced options <small>(can be changed later)</small:</p>
+								<table class="form-table" style="width: 100%;">
+									<tr>
+										<td style="width: 200px;">Values delimiter:</td>
+										<td>
+											<select id="valuesDelimiterSelect" value="," disabled="disabled">
+												<option value=",">,</option>
+												<option value=";">;</option>
+												<option value="|">|</option>
+												<option value="other">other</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<td>Used values quotes:</td>
+										<td>
+											<select id="usedQuotesSelect" value="none" disabled="disabled">
+												<option value="none">none</option>
+												<option value="double">double</option>
+												<option value="single">single</option>
+											</select
+										</td>
+									</tr>
+									<tr>
+										<td>Used line endings:</td>
+										<td>
+											<select id="lineEndingSelect" value="," disabled="disabled">
+												<option value="\l">\l</option>
+												<option value="\n">\n</option>
+												<option value="\l\n">\l\n</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<td>Has header row:</td>
+										<td>
+											<input id="hasHeaderRowCheckbox" type="checkbox" disabled="disabled">
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<div class="tab" id="newCsvFileTab">
+							<div class="tab-content">
+								<p>
+									Select existing CSV file from your disk&hellip;
+								</p>
+								<p style="text-align: center;">
+									<button id="selectCsvFile-btn" class="button button-raised">
+										Select file
+									</button>
+								</p>
+								<hr>
+								<p>
+									Options and preview:
+								</p>
+								<table class="form-table" style="width: 100%;">
+									<tr>
+										<td colspan="2">
+											<textarea id="csvPreview" style="width: 100%;" rows="5" readonly="readonly"></textarea>
+										</td>
+									</tr>
+									<tr>
+										<td style="width: 200px;">Values delimiter:</td>
+										<td>
+											<select id="valuesDelimiterSelect1" value="," disabled="disabled">
+												<option value=",">,</option>
+												<option value=";">;</option>
+												<option value="|">|</option>
+												<option value="other">other</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<td>Used values quotes:</td>
+										<td>
+											<select id="usedQuotesSelect1" value="none" disabled="disabled">
+												<option value="none">none</option>
+												<option value="double">double</option>
+												<option value="single">single</option>
+											</select
+										</td>
+									</tr>
+									<tr>
+										<td>Used line endings:</td>
+										<td>
+											<select id="lineEndingSelect1" value="," disabled="disabled">
+												<option value="\l">\l</option>
+												<option value="\n">\n</option>
+												<option value="\l\n">\l\n</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<td>Has header row:</td>
+										<td>
+											<input id="hasHeaderRowCheckbox1" type="checkbox" disabled="disabled">
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<div class="tab" id="newCsvFileTab">
+							<div class="tab-content">
+								<p>the third tab (recent file)</p>
+							</div>
+						</div>
+					</div>
 				</div>
-			</th>
-			<th scope="col">
-				<span class="label">Pkd</span>
-			</th>
-			<th scope="col"><span class="label">Name</span></th>
-			<th scope="col"><span class="label">Position</span></th>
-			<th scope="col"><span class="label">Morale</span></th>
-			<th scope="col"><span class="label">Form</span></th>
-			<th class="num sorted" scope="col">
-				<span class="md-icon dp16">arrow_forward</span>
-				<span class="label">Con</span>
-			</th>
-			<th scope="col" class="num"><span class="label">Apps</span></th>
-			<th scope="col" class="num"><span class="label">Goals</span></th>
-			<th scope="col" class="num"><span class="label">Rating</span></th>
-		</tr>
-	</thead>
-	<tbody id="dataTableBody">
-		<tr>
-			<th class="check" scope="row">
-				<div class="checkbox-group">
-					<input type="checkbox" id="check-01">
-					<label for="check-01">
-						<span class="ripple"></span>
-						<span class="check"></span>
-						<span class="box"></span>
-					</label>
-				</div>
-			</th>
-			<td>GK</td>
-			<td>Matus Kozacik</td>
-			<td>GK</td>
-			<td>Superb</td>
-			<td>7-7-7-5-7</td>
-			<td class="num">100%</td>
-			<td class="num">5</td>
-			<td class="num">-</td>
-			<td class="num">6.60</td>
-		</tr>
-		<tr>
-			<th class="check" scope="row">
-				<div class="checkbox-group">
-					<input type="checkbox" id="check-02">
-					<label for="check-02">
-						<span class="ripple"></span>
-						<span class="check"></span>
-						<span class="box"></span>
-					</label>
-				</div>
-			</th>
-			<td>GK</td>
-			<td>Tomas Postulka</td>
-			<td>GK</td>
-			<td>Good</td>
-			<td>6-6-7-6-7</td>
-			<td class="num">99%</td>
-			<td class="num">13</td>
-			<td class="num">-</td>
-			<td class="num">7.08</td>
-		</tr>
-		<tr>
-			<th class="check" scope="row">
-				<div class="checkbox-group">
-					<input type="checkbox" id="check-03">
-					<label for="check-03">
-						<span class="ripple"></span>
-						<span class="check"></span>
-						<span class="box"></span>
-					</label>
-				</div>
-			</th>
-			<td>DC</td>
-			<td>Tomas Repka</td>
-			<td>DRC</td>
-			<td>Superb</td>
-			<td>6-7-6-7-6</td>
-			<td class="num">82%</td>
-			<td class="num">10</td>
-			<td class="num">-</td>
-			<td class="num">6.40</td>
-		</tr>
-		<tr>
-			<th class="check" scope="row">
-				<div class="checkbox-group">
-					<input type="checkbox" id="check-04">
-					<label for="check-04">
-						<span class="ripple"></span>
-						<span class="check"></span>
-						<span class="box"></span>
-					</label>
-				</div>
-			</th>
-			<td>DC</td>
-			<td>Michal Kadlec</td>
-			<td>DLC</td>
-			<td>Superb</td>
-			<td>6-7-7-7-7</td>
-			<td class="num">93%</td>
-			<td class="num">12</td>
-			<td class="num">-</td>
-			<td class="num">6.83</td>
-		</tr>
-		<tr>
-			<th class="check" scope="row">
-				<div class="checkbox-group">
-					<input type="checkbox" id="check-05">
-					<label for="check-05">
-						<span class="ripple"></span>
-						<span class="check"></span>
-						<span class="box"></span>
-					</label>
-				</div>
-			</th>
-			<td>S5</td>
-			<td>Jiri Kladrubsky</td>
-			<td>DL</td>
-			<td>Superb</td>
-			<td>7-7-7-7-7</td>
-			<td class="num">91%</td>
-			<td class="num">10(1)</td>
-			<td class="num">-</td>
-			<td class="num">7.00</td>
-		</tr>
-		<tr>
-			<th class="check" scope="row">
-				<div class="checkbox-group">
-					<input type="checkbox" id="check-06">
-					<label for="check-06">
-						<span class="ripple"></span>
-						<span class="check"></span>
-						<span class="box"></span>
-					</label>
-				</div>
-			</th>
-			<td>DL</td>
-			<td>Pavel Mares</td>
-			<td>DL</td>
-			<td>Superb</td>
-			<td>8-7-7-6-7</td>
-			<td class="num">74%</td>
-			<td class="num">6</td>
-			<td class="num">-</td>
-			<td class="num">7.00</td>
-		</tr>
-		<tr>
-			<th class="check" scope="row">
-				<div class="checkbox-group">
-					<input type="checkbox" id="check-07">
-					<label for="check-07">
-						<span class="ripple"></span>
-						<span class="check"></span>
-						<span class="box"></span>
-					</label>
-				</div>
-			</th>
-			<td>S4</td>
-			<td>Milos Brezinsky</td>
-			<td>DC</td>
-			<td>Very Good</td>
-			<td>7-6-7-8-6</td>
-			<td class="num">92%</td>
-			<td class="num">13</td>
-			<td class="num">1</td>
-			<td class="num">6.92</td>
-		</tr>
-		<tr>
-			<th class="check" scope="row">
-				<div class="checkbox-group">
-					<input type="checkbox" id="check-08">
-					<label for="check-08">
-						<span class="ripple"></span>
-						<span class="check"></span>
-						<span class="box"></span>
-					</label>
-				</div>
-			</th>
-			<td>S7</td>
-			<td>Lubos Husek</td>
-			<td>DC, DM</td>
-			<td>Superb</td>
-			<td>7-7-6-7-7</td>
-			<td class="num">100%</td>
-			<td class="num">5(1)</td>
-			<td class="num">-</td>
-			<td class="num">6.83</td>
-		</tr>
-		<tr>
-			<th class="check" scope="row">
-				<div class="checkbox-group">
-					<input type="checkbox" id="check-09">
-					<label for="check-09">
-						<span class="ripple"></span>
-						<span class="check"></span>
-						<span class="box"></span>
-					</label>
-				</div>
-			</th>
-			<td>DR</td>
-			<td>Zdenek Pospech</td>
-			<td>D/WB R</td>
-			<td>Superb</td>
-			<td>6-7-7-7-7</td>
-			<td class="num">80%</td>
-			<td class="num">17</td>
-			<td class="num">1</td>
-			<td class="num">6.94</td>
-		</tr>
-		<tr>
-			<th class="check" scope="row">
-				<div class="checkbox-group">
-					<input type="checkbox" id="check-10">
-					<label for="check-10">
-						<span class="ripple"></span>
-						<span class="check"></span>
-						<span class="box"></span>
-					</label>
-				</div>
-			</th>
-			<td>S6</td>
-			<td>Karol Kisel</td>
-			<td>M RC</td>
-			<td>Very Good</td>
-			<td>7-7-7-7-7</td>
-			<td class="num">94%</td>
-			<td class="num">8(4)</td>
-			<td class="num">3</td>
-			<td class="num">7.00</td>
-		</tr>
-		<tr>
-			<th class="check" scope="row">
-				<div class="checkbox-group">
-					<input type="checkbox" id="check-11">
-					<label for="check-11">
-						<span class="ripple"></span>
-						<span class="check"></span>
-						<span class="box"></span>
-					</label>
-				</div>
-			</th>
-			<td>S3</td>
-			<td>David Limbersky</td>
-			<td>MRL</td>
-			<td>Superb</td>
-			<td>7-7-6-8-7</td>
-			<td class="num">95%</td>
-			<td class="num">13(1)</td>
-			<td class="num">1</td>
-			<td class="num">6.93</td>
-		</tr>
-		<tr>
-			<th class="check" scope="row">
-				<div class="checkbox-group">
-					<input type="checkbox" id="check-12">
-					<label for="check-12">
-						<span class="ripple"></span>
-						<span class="check"></span>
-						<span class="box"></span>
-					</label>
-				</div>
-			</th>
-			<td>-</td>
-			<td>Igor Zofcak</td>
-			<td>M RLC</td>
-			<td>Superb</td>
-			<td>7-7-7-7-7</td>
-			<td class="num">64%</td>
-			<td class="num">9(3)</td>
-			<td class="num">2</td>
-			<td class="num">6.92</td>
-		</tr>
-		<tr>
-			<th class="check" scope="row">
-				<div class="checkbox-group">
-					<input type="checkbox" id="check-13">
-					<label for="check-13">
-						<span class="ripple"></span>
-						<span class="check"></span>
-						<span class="box"></span>
-					</label>
-				</div>
-			</th>
-			<td>MC</td>
-			<td>Martin Abraham</td>
-			<td>MC</td>
-			<td>Superb</td>
-			<td>7-7-7-7-7</td>
-			<td class="num">83%</td>
-			<td class="num">4(7)</td>
-			<td class="num">2</td>
-			<td class="num">6.91</td>
-		</tr>
-		<tr>
-			<th class="check" scope="row">
-				<div class="checkbox-group">
-					<input type="checkbox" id="check-14">
-					<label for="check-14">
-						<span class="ripple"></span>
-						<span class="check"></span>
-						<span class="box"></span>
-					</label>
-				</div>
-			</th>
-			<td>S2</td>
-			<td>Pavel Horvath</td>
-			<td>MC</td>
-			<td>Superb</td>
-			<td>7-7-7-8-7</td>
-			<td class="num">81%</td>
-			<td class="num">10(2)</td>
-			<td class="num">3</td>
-			<td class="num">7.0</td>
-		</tr>
-		<tr>
-			<th class="check" scope="row">
-				<div class="checkbox-group">
-					<input type="checkbox" id="check-15">
-					<label for="check-15">
-						<span class="ripple"></span>
-						<span class="check"></span>
-						<span class="box"></span>
-					</label>
-				</div>
-			</th>
-			<td>MC</td>
-			<td>Ludovic Sylvestre</td>
-			<td>MC</td>
-			<td>Superb</td>
-			<td>6-6-7-6-7</td>
-			<td class="num">66%</td>
-			<td class="num">4(5)</td>
-			<td class="num">1</td>
-			<td class="num">6.67</td>
-		</tr>
-		<tr>
-			<th class="check" scope="row">
-				<div class="checkbox-group">
-					<input type="checkbox" id="check-16">
-					<label for="check-16">
-						<span class="ripple"></span>
-						<span class="check"></span>
-						<span class="box"></span>
-					</label>
-				</div>
-			</th>
-			<td>-</td>
-			<td>Daniel Kolar</td>
-			<td>AM R</td>
-			<td>Very Good</td>
-			<td>7-8-7-6-8</td>
-			<td class="num">66%</td>
-			<td class="num">3(2)</td>
-			<td class="num">1</td>
-			<td class="num">7.20</td>
-		</tr>
-		<tr>
-			<th class="check" scope="row">
-				<div class="checkbox-group">
-					<input type="checkbox" id="check-17">
-					<label for="check-17">
-						<span class="ripple"></span>
-						<span class="check"></span>
-						<span class="box"></span>
-					</label>
-				</div>
-			</th>
-			<td>AMR</td>
-			<td>Miroslav Matusovic</td>
-			<td>AM RL</td>
-			<td>Superb</td>
-			<td>7-5-7-7-7</td>
-			<td class="num">83%</td>
-			<td class="num">14(1)</td>
-			<td class="num">3</td>
-			<td class="num">6.87</td>
-		</tr>
-		<tr>
-			<th class="check" scope="row">
-				<div class="checkbox-group">
-					<input type="checkbox" id="check-18">
-					<label for="check-18">
-						<span class="ripple"></span>
-						<span class="check"></span>
-						<span class="box"></span>
-					</label>
-				</div>
-			</th>
-			<td>AML</td>
-			<td>Jan Rezek</td>
-			<td>AM LC,FC</td>
-			<td>Superb</td>
-			<td>7-6-8-6-7</td>
-			<td class="num">92%</td>
-			<td class="num">6(5)</td>
-			<td class="num">5</td>
-			<td class="num">7.09</td>
-		</tr>
-		<tr>
-			<th class="check" scope="row">
-				<div class="checkbox-group">
-					<input type="checkbox" id="check-19">
-					<label for="check-19">
-						<span class="ripple"></span>
-						<span class="check"></span>
-						<span class="box"></span>
-					</label>
-				</div>
-			</th>
-			<td>-</td>
-			<td>Libor Dosek</td>
-			<td>ST</td>
-			<td>Very Good</td>
-			<td>7-7-7-8-7</td>
-			<td class="num">61%</td>
-			<td class="num">9(2)</td>
-			<td class="num">4</td>
-			<td class="num">6.91</td>
-		</tr>
-		<tr>
-			<th class="check" scope="row">
-				<div class="checkbox-group">
-					<input type="checkbox" id="check-20">
-					<label for="check-20">
-						<span class="ripple"></span>
-						<span class="check"></span>
-						<span class="box"></span>
-					</label>
-				</div>
-			</th>
-			<td>FC</td>
-			<td>Jan Kysela</td>
-			<td>ST</td>
-			<td>Superb</td>
-			<td>7-7-6-7-8</td>
-			<td class="num">64%</td>
-			<td class="num">4(2)</td>
-			<td class="num">2</td>
-			<td class="num">7.00</td>
-		</tr>
-		<tr>
-			<th class="check" scope="row">
-				<div class="checkbox-group">
-					<input type="checkbox" id="check-21">
-					<label for="check-21">
-						<span class="ripple"></span>
-						<span class="check"></span>
-						<span class="box"></span>
-					</label>
-				</div>
-			</th>
-			<td>FC</td>
-			<td>Miroslav Slepicka</td>
-			<td>ST</td>
-			<td>Superb</td>
-			<td>6-6-7-8-7</td>
-			<td class="num">92%</td>
-			<td class="num">13(1)</td>
-			<td class="num">6</td>
-			<td class="num">6.86</td>
-		</tr>
-	</tbody>
-	<tfoot>
-		<tr>
-			<td colspan="10">
-				<span class="label">Rows per page:</span>
-				<div class="select-group" id="rowsCount">
-					<input id="rowsCountInput" value="25">
-					<span class="md-icon dp24">keyboard_arrow_down</span>
-					<ul>
-						<li>25</li>
-						<li>50</li>
-						<li>100</li>
-					</ul>
-				</div>
-				<span class="label" id="dataViewRangeInfo">0-0 of 0</span>
-				<span class="md-icon dp24" id="moveTableToPrevPage">navigate_before</span>
-				<span class="md-icon dp24" id="moveTableToNextPage">navigate_next</span>
-			</td>
-		</tr>
-	</tfoot>
-</table>
-<!-- // TEST DATA -->
-			
+				<footer>
+					<button class="button" disabled="disabled">Open</button>
+				</footer>
+			</div>
+			<div id="data-cont">
+				<!-- Here goes data table created by `DataTablePrototype`. -->
+			</div>
 		</div>
 	</body>
 </html>
