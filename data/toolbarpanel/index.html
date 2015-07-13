@@ -8,20 +8,140 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="initial-scale=1, width=device-width">
-		<title>CsvViewer</title>
+		<title>CSVViewer</title>
+		<link href="../icon-16.png" type="image/png" rel="shortcut icon">
 		<link href="style.css" type="text/css" rel="stylesheet">
+		<script src="../material-design/material-design.js"></script>
 		<script src="index.js"></script>
 	</head>
-	<body>
-		<div class="content">
-			<ul class="menu" id="menu">
-				<li id="new-file"><span class="md-icon dp18">create</span>New CSV file&hellip;</li>
-				<li id="open-file"><span class="md-icon dp18">open_in_new</span>Open CSV file&hellip;</li>
-				<li class="separator">&nbsp;</li>
-				<li id="preferences"><span class="md-icon dp18">build</span>Preferences&hellip;</li>
-				<li class="separator">&nbsp;</li>
-				<li id="homepage"><span class="md-icon dp18">public</span>Add-on homepage&hellip;</li>
-			</ul>
+	<body class="blue">
+		<header class="tabs">
+			<nav>
+				<ul role="navigation">
+					<li id="new_file-tab" onclick="onTabClick('new_file');" class="selected"><span>New file</span></li>
+					<li id="open_file-tab" onclick="onTabClick('open_file');"><span>Open file</span></li>
+					<li id="recent_files-tab" onclick="onTabClick('recent_files');"><span>Recent files</span></li>
+				</ul>
+			</nav>
+		</header>
+		<div class="tabpanels">
+			<div class="tab-container">
+				<div class="tab tab-active" id="new_file-tabpanel">
+					<div class="tab-content">
+						<h2>Main options</h2>
+						<div class="input-group" id="columnsCount">
+							<input class="text-input" id="columnsCount-input" min="1" max="9999" placeholder="Count of columns (1-9999)" type="number" value="">
+							<div class="bar"></div>
+						</div>
+						<div class="input-group" id="rowsCount">
+							<input class="text-input" id="rowsCount-input" min="1" max="999999" placeholder="Count of rows (1-999999)" type="number" value="">
+							<div class="bar"></div>
+						</div>
+						<h2>Advanced options</h2>
+						<div class="form-row">
+							<label>Values delimiter:</label>
+							<div class="select-group" id="valuesDelimiterSelect">
+								<input id="valuesDelimiterSelect-input" type="text" readonly="readonly" value=",">
+								<span class="md-icon dp24">keyboard_arrow_down</span>
+								<ul>
+									<li>,</li>
+									<li>;</li>
+									<li>|</li>
+									<li>other</li>
+								</ul>
+							</div>
+						</div>
+						<div class="form-row">
+							<label>Used quotes delimiter:</label>
+							<div class="select-group" id="usedQuotesSelect">
+								<input id="usedQuotesSelect-input" type="text" readonly="readonly" value="none">
+								<span class="md-icon dp24">keyboard_arrow_down</span>
+								<ul>
+									<li>none</li>
+									<li>double</li>
+									<li>single</li>
+								</ul>
+							</div>
+						</div>
+						<div class="form-row">
+							<label>Has header row:</label>
+							<div class="checkbox-group">
+								<input type="checkbox" id="hasHeaderRow">
+								<label for="hasHeaderRow">
+									<span class="ripple"></span>
+									<span class="check"></span>
+									<span class="box"></span>
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab" id="open_file-tabpanel">
+					<div class="tab-content">
+						<p>Select existing CSV file from your disk&hellip;</p>
+						<p style="text-align: center;">
+							<button id="selectCsvFile-btn" class="button button-raised">
+								Select file
+							</button>
+						</p>
+						<hr>
+						<h2>Options and preview</h2>
+						<!-- 
+						   - TODO Style this:
+						   - @see https://www.google.com/design/spec/components/text-fields.html#text-fields-multi-line-text-field
+						   -->
+						<textarea id="csvPreview" style="width: 100%;" rows="5" readonly="readonly"></textarea>
+
+						<div class="form-row">
+							<label>Values delimiter:</label>
+							<div class="select-group" id="valuesDelimiterSelect1">
+								<input id="valuesDelimiterSelect1-input" type="text" readonly="readonly" value=",">
+								<span class="md-icon dp24">keyboard_arrow_down</span>
+								<ul>
+									<li>,</li>
+									<li>;</li>
+									<li>|</li>
+									<li>other</li>
+								</ul>
+							</div>
+						</div>
+						<div class="form-row">
+							<label>Used quotes delimiter:</label>
+							<div class="select-group" id="usedQuotesSelect1">
+								<input id="usedQuotesSelect1-input" type="text" readonly="readonly" value="none">
+								<span class="md-icon dp24">keyboard_arrow_down</span>
+								<ul>
+									<li>none</li>
+									<li>double</li>
+									<li>single</li>
+								</ul>
+							</div>
+						</div>
+						<div class="form-row">
+							<label>Has header row:</label>
+							<div class="checkbox-group">
+								<input type="checkbox" id="hasHeaderRow2">
+								<label for="hasHeaderRow2">
+									<span class="ripple"></span>
+									<span class="check"></span>
+									<span class="box"></span>
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab" id="recent_files-tabpanel">
+					<div class="tab-content">
+						<p style="color: #F30;">
+							<code>XXX</code> The third tab (recent file)!
+						</p>
+					</div>
+				</div>
+			</div>
 		</div>
+		<footer>
+			<button class="button" disabled="disabled">Close</button>
+			<button class="button" disabled="disabled">Open</button>
+		</footer>
 	</body>
 </html>

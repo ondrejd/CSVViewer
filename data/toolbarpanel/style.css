@@ -2,49 +2,37 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-@import url("../common-style.css");
+@import url("../material-design/material-design.css");
 
-/**
- * Global styles
- */
-html, body {
-	overflow: hidden !important;
-}
+/* This is opened in panel - we don't want scrollbars. */
+html, body { overflow: hidden !important; }
 
-/**
- * Main menu
- */
-div.content ul.menu {
-	/*background-color: #FFFFFF;*/
-	list-style: none;
+/* Header contains tabs */
+header {
+	background-color: #FFFFFF;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+	height: 56px;
 	margin: 0 0 0 0;
-	padding: 16px 0 16px 0;
-}
-div.content ul.menu li {
-	color: #1C1C1C;
-	font-family: "RobotoDraft", "Roboto", sans-serif;
-	font-size: 18px;
-	height: 32px;
-	padding: 7px 24px 7px 24px;
-	text-decoration: none;
-	vertical-align: baseline!important;
-	/*text-transform: uppercase;*/
-}
-div.content ul.menu li span {
-	color: #1C1C1C;
-	margin-right: 16px;
-	position: relative;
-	top: 6px;
-}
-div.content ul.menu li:hover {
-	color: #E91E63;
-	cursor: pointer;
-}
-div.content ul.menu li:hover span {
-	color: #E91E63;
-}
-div.content ul.menu li.separator {
-	background-color: rgba(0, 0, 0, 0.12);
-	height: 1px;
 	padding: 0 0 0 0;
+	text-align: center;
+	text-shadow: none;
+}
+
+/* Some specific styles for forms in tabs */
+.tab-content .form-row {
+	height: 38px;
+	padding-top: 10px;
+}
+.tab-content label {
+	color: rgba(0, 0, 0, 0.87);
+	display: inline-block;
+	width: 200px;
+}
+.tab-content .checkbox-group {
+	left: 6px;
+}
+
+/* Footer contain just buttons */
+footer {
+	text-align: right;
 }
