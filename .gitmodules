@@ -1,3 +1,0 @@
-[submodule "data/material-design"]
-	path = data/material-design
-	url = git://github.com/ondrejd/material-design-for-firefox-addons.git
