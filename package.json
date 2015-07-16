@@ -1,22 +1,25 @@
 {
-	"id": "csvviewer@ondrejd.info",
-	"title": "CSVViewer",
-	"name": "csvviewer",
-	"version": "0.0.1",
-	"description": "Add-on for Mozilla Firefox that enables viewing/creating/editing CSV files directly from your browser.",
-	"main": "index.js",
-	"author": {
-		"name": "Ondřej Doněk",
-		"email": "ondrejd@gmail.com",
-		"url": "https://ondrejdonek.blogspot.com/"
-	},
-	"engines": {
-		"firefox": ">=38.0a1"
-	},
-	"license": "MPL-2.0",
-	"homepage": "https://github.com/ondrejd/CSVViewer",
-	"permissions": {
-		"private-browsing": true,
-		"multiprocess": true
-	}
+  "id": "csvviewer@ondrejd.info",
+  "title": "CSVViewer",
+  "name": "csvviewer",
+  "version": "0.0.1",
+  "description": "Add-on for Mozilla Firefox that enables viewing/creating/editing CSV files directly from your browser.",
+  "main": "index.js",
+  "author": {
+    "name": "Ondřej Doněk",
+    "email": "ondrejd@gmail.com",
+    "url": "https://ondrejdonek.blogspot.com/"
+  },
+  "engines": {
+    "firefox": ">=38.0a1"
+  },
+  "license": "MPL-2.0",
+  "homepage": "https://github.com/ondrejd/CSVViewer",
+  "permissions": {
+    "private-browsing": true,
+    "multiprocess": true
+  },
+  "dependencies": {
+    "material-design-lite": "~1.0.0-3"
+  }
 }
