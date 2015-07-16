@@ -3,64 +3,37 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /**
- * Holds ID of the currently selected tab.
- * @var {String} gCurrentTab
- */
-var gCurrentTab = 'new_file';
-
-/**
- * Handle clicks on tab.
- * @param {String} aTabName
- */
-function onTabClick(aTabName) {
-	var currentTab = document.getElementById(gCurrentTab + '-tab'),
-	    currentTabpanel = document.getElementById(gCurrentTab + '-tabpanel'),
-	    newTab = document.getElementById(aTabName + '-tab'),
-	    newTabpanel = document.getElementById(aTabName + '-tabpanel');
-
-	currentTab.classList.remove('selected');
-	currentTabpanel.classList.remove('tab-active');
-	newTab.classList.add('selected');
-	newTabpanel.classList.add('tab-active');
-
-	gCurrentTab = aTabName;
-} // end onTabClick(aEvent)
-
-
-/**
- * Handles clicks on menu.
+ * Handles clicks on menu button.
  * @param {DOMEvent} aEvent
  */
-function onMenuClick(aEvent) {
-	if (aEvent.target.nodeName != 'LI') {
+function onClick(aEvent) {
+	if (aEvent.target.nodeName != 'BUTTON') {
 		return;
 	}
 
 	switch (aEvent.target.id) {
-//		case 'new-file'    : addon.port.emit('newFileCmd'); break;
-		case 'open-file'   : addon.port.emit('openFileCmd'); break;
-		case 'preferences' : addon.port.emit('preferencesCmd'); break;
-		case 'homepage'    : addon.port.emit('homepageCmd'); break;
+		case 'new'     : addon.port.emit('newCmd'); break;
+		case 'open'    : addon.port.emit('openCmd'); break;
+		case 'settings': addon.port.emit('settingsCmd'); break;
+		case 'homepage': addon.port.emit('homepageCmd'); break;
+		case 'donate'  : addon.port.emit('donateCmd'); break;
 	}
-} // end onMenuClick()
-
-// ===========================================================================
-var addon = {port: {on: function(aName, aCallback) {/* ... */}}};
+} // end onClick()
 
 // Register event listeners when panel is showing.
 addon.port.on('show', function onShow() {
-	MD_initSelectInputs();
-
-	var menu = document.getElementById('menu');
-	if (menu) {
-		menu.addEventListener('click', onMenuClick, false);
-	}
+	document.getElementById('new').addEventListener('click', onClick, false);
+	document.getElementById('open').addEventListener('click', onClick, false);
+	document.getElementById('settings').addEventListener('click', onClick, false);
+	document.getElementById('homepage').addEventListener('click', onClick, false);
+	document.getElementById('donate').addEventListener('click', onClick, false);
 });
 
 // Remove registered event listeners when panel is hiding.
 addon.port.on('hide', function onHide() {
-	var menu = document.getElementById('menu');
-	if (menu) {
-		menu.removeEventListener('click', onMenuClick, false);
-	}
+	document.getElementById('new').removeEventListener('click', onClick, false);
+	document.getElementById('open').removeEventListener('click', onClick, false);
+	document.getElementById('settings').removeEventListener('click', onClick, false);
+	document.getElementById('homepage').removeEventListener('click', onClick, false);
+	document.getElementById('donate').removeEventListener('click', onClick, false);
 });
