@@ -7,7 +7,6 @@ let panels = require('sdk/panel');
 let self = require('sdk/self');
 let tabs = require('sdk/tabs');
 let { ToggleButton } = require('sdk/ui/button/toggle');
-let { TextDecoder, TextEncoder, OS } = Cu.import('resource://gre/modules/osfile.jsm', {});
 let cmds = require('./lib/commands.js');
 
 Cu.import('resource://gre/modules/Services.jsm');
@@ -28,21 +27,17 @@ var gToolbarButton = ToggleButton({
 	id: 'csvviewer-toolbarbutton',
 	label: 'CSVViewer',
 	icon: {
-		'16': './icon-16.png',
-		'32': './icon-32.png',
-		'64': './icon-64.png',
+		'16': self.data.url('icon-16.png'),
+		'32': self.data.url('icon-32.png'),
+		'64': self.data.url('icon-64.png')
 	},
-	/**
-	 * Handles toolbar button click action.
-	 * @param {Object} aState
-	 */
-	onChange: function handleToolbarButtonChange(aState) {
+	onChange: function(aState) {
 		if (aState.checked) {
 			gToolbarPanel.show({
 				position: gToolbarButton
 			});
 		}
-	} // end handleToolbarButtonChange(aState)
+	}
 });
 
 /**
@@ -50,8 +45,8 @@ var gToolbarButton = ToggleButton({
  * @var {Panel} gToolbarPanel
  */
 var gToolbarPanel = panels.Panel({
-	height: 540,
-	width: 610,
+	height: 210,
+	width: 200,
 	contentURL: './toolbarpanel/index.html'
 });
 
@@ -67,27 +62,27 @@ gToolbarPanel.on('hide', function() {
 });
 
 // Handle new CSV file command.
-gToolbarPanel.port.on('newFileCmd', function() {
+gToolbarPanel.port.on('newCmd', function() {
 	gToolbarPanel.hide();
-	cmds.newCsvDocument();
+	cmds.cmdNew();
 });
 
 // Handle open CSV file command.
-gToolbarPanel.port.on('openFileCmd', function() {
+gToolbarPanel.port.on('openCmd', function() {
 	gToolbarPanel.hide();
-	cmds.openCsvDocument();
+	cmds.cmdOpen();
 });
 
-// Handle show preferences command.
-gToolbarPanel.port.on('preferencesCmd', function() {
+// Handle show add-on settings command.
+gToolbarPanel.port.on('settingsCmd', function() {
 	gToolbarPanel.hide();
-	cmds.openPreferences();
+	cmds.cmdSettings();
 });
 
 // Handle homepage command.
 gToolbarPanel.port.on('homepageCmd', function() {
 	gToolbarPanel.hide();
-	cmds.openHomepage();
+	cmds.cmdHomepage();
 });
 
 // ==========================================================================

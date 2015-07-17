@@ -2,36 +2,46 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-@import url("../common-style.css");
-
-/* Table 'Loading data...' message. */
-table.data tbody td.message {
-	font-size: 23px;
-	color: rgba(0, 0, 0, 0.54);
-	padding: 92px 0 112px 0;
-	text-align: center;
+html, body {
+	font-family: Roboto;
 }
-table.data tbody tr:hover td.message {
+
+/* Menu customizations */
+.mdl-menu {
+	padding-bottom: 0;
+	padding-top: 0;
+}
+.mdl-menu__separator {
+	background-color: rgba(0, 0, 0, 0.12);
+	border: 0px none;
+	height: 1px;
+	margin: 6px 0 6px 0;
+	margin: 0 0;
+}
+.mdl-menu__item i.material-icons {
+	display: inline-block;
+	position: relative;
+	top: 6px;
+	left: -4px;
+}
+.mdl-menu__item {
+	padding-left: 20px;
+}
+/* Data table */
+.mdl-data-table {
+	width: 100%;
+}
+.mdl-data-table thead tr {
 	background-color: #FFFFFF;
 }
-
-/* Style for empty value */
-table.data tbody td span.empty-val {
-	color: rgba(0, 0, 0, 0.12);
+/* Foat menu button */
+#floatMenu__button {
+	position: fixed;
+	opacity: 0.4;
+	right: 56px;
+	top: 24px;
+	transition: all 0.3s ease;
 }
-
-/* Popup dialog for deleting selected table row(s). */
-#deleteRowsDialog {
-	background-color: #FAFAFA;
-	display: none;
-	left: 0px;
-	margin: 0 0 0 0;
-	position: absolute;
-	z-index: 11;
+#floatMenu__button:active, #floatMenu__button:hover {
+	opacity: 1;
 }
-#deleteRowsDialog .content p {
-	padding: 28px 0 28px 0;
-}
-#deleteRowsCancelBtn { margin-right: 18px; }
-
-

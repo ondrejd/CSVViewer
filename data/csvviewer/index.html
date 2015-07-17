@@ -10,161 +10,32 @@
 		<meta name="viewport" content="initial-scale=1, width=device-width">
 		<title>CSVViewer</title>
 		<link href="../icon-16.png" type="image/png" rel="shortcut icon">
-		<link href="style.css" type="text/css" rel="stylesheet">
+		<!-- <link rel="stylesheet" href="../../node_modules/material-design-lite/material.min.css"> -->
+		<link rel="stylesheet" href="../../node_modules/material-design-lite/material.css">
+		<!-- <script src="../../node_modules/material-design-lite/material.min.js"></script> -->
+		<script src="../../node_modules/material-design-lite/material.js"></script>
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+		<link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<header>
-			<h1>CSVViewer</h1>
-		</header>
-		<div class="content" id="main">
-			<div id="intro-dialog" class="dialog">
-				<header>
-					<!--<h2>Open CSV file</h2>-->
-					<nav>
-						<ul role="navigation">
-							<li class="selected"><a href="#newCsvFileTab">New file</a></li>
-							<li><a href="#openCsvFileTab">Open file</a></li>
-							<li><a href="#recentFilesTab">Recent files</a></li>
-						</ul>
-					</nav>
-				</header>
-				<div class="content">
-					<div class="tab-container">
-						<div class="tab tab-active" id="newCsvFileTab">
-							<div class="tab-content">
-								<p>
-									Create new CSV document with:
-								</p>
-								<table class="form-table" style="width: 100%;">
-									<tr>
-										<td style="width: 200px;">Columns count:</td>
-										<td>
-											<input id="columnsCountInput" type="text" value="5">
-										</td>
-									</tr>
-									<tr>
-										<td style="width: 200px;">Rows count:</td>
-										<td>
-											<input id="rowsCountInput" type="text" value="5">
-										</td>
-									</tr>
-								</table>
-								<p>Advanced options <small>(can be changed later)</small:</p>
-								<table class="form-table" style="width: 100%;">
-									<tr>
-										<td style="width: 200px;">Values delimiter:</td>
-										<td>
-											<select id="valuesDelimiterSelect" value="," disabled="disabled">
-												<option value=",">,</option>
-												<option value=";">;</option>
-												<option value="|">|</option>
-												<option value="other">other</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<td>Used values quotes:</td>
-										<td>
-											<select id="usedQuotesSelect" value="none" disabled="disabled">
-												<option value="none">none</option>
-												<option value="double">double</option>
-												<option value="single">single</option>
-											</select
-										</td>
-									</tr>
-									<tr>
-										<td>Used line endings:</td>
-										<td>
-											<select id="lineEndingSelect" value="," disabled="disabled">
-												<option value="\l">\l</option>
-												<option value="\n">\n</option>
-												<option value="\l\n">\l\n</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<td>Has header row:</td>
-										<td>
-											<input id="hasHeaderRowCheckbox" type="checkbox" disabled="disabled">
-										</td>
-									</tr>
-								</table>
-							</div>
-						</div>
-						<div class="tab" id="newCsvFileTab">
-							<div class="tab-content">
-								<p>
-									Select existing CSV file from your disk&hellip;
-								</p>
-								<p style="text-align: center;">
-									<button id="selectCsvFile-btn" class="button button-raised">
-										Select file
-									</button>
-								</p>
-								<hr>
-								<p>
-									Options and preview:
-								</p>
-								<table class="form-table" style="width: 100%;">
-									<tr>
-										<td colspan="2">
-											<textarea id="csvPreview" style="width: 100%;" rows="5" readonly="readonly"></textarea>
-										</td>
-									</tr>
-									<tr>
-										<td style="width: 200px;">Values delimiter:</td>
-										<td>
-											<select id="valuesDelimiterSelect1" value="," disabled="disabled">
-												<option value=",">,</option>
-												<option value=";">;</option>
-												<option value="|">|</option>
-												<option value="other">other</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<td>Used values quotes:</td>
-										<td>
-											<select id="usedQuotesSelect1" value="none" disabled="disabled">
-												<option value="none">none</option>
-												<option value="double">double</option>
-												<option value="single">single</option>
-											</select
-										</td>
-									</tr>
-									<tr>
-										<td>Used line endings:</td>
-										<td>
-											<select id="lineEndingSelect1" value="," disabled="disabled">
-												<option value="\l">\l</option>
-												<option value="\n">\n</option>
-												<option value="\l\n">\l\n</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<td>Has header row:</td>
-										<td>
-											<input id="hasHeaderRowCheckbox1" type="checkbox" disabled="disabled">
-										</td>
-									</tr>
-								</table>
-							</div>
-						</div>
-						<div class="tab" id="newCsvFileTab">
-							<div class="tab-content">
-								<p>the third tab (recent file)</p>
-							</div>
-						</div>
-					</div>
+		<div id="layout" class="mdl-layout mdl-js-layout">
+			<main id="content" class="mdl-layout__content">
+				<div id="content__containter" class="page-content">
+					<!-- Data table goes here ... -->
 				</div>
-				<footer>
-					<button class="button" disabled="disabled">Open</button>
-				</footer>
-			</div>
-			<div id="data-cont">
-				<!-- Here goes data table created by `DataTablePrototype`. -->
-			</div>
+				<button id="floatMenu__button" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+					<i class="material-icons">menu</i>
+				</button>
+				<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="floatMenu__button">
+					<li id="edit__menuitem" disabled class="mdl-menu__item"><i class="material-icons">edit</i>Edit</li>
+					<li class="mdl-menu__separator"></li>
+					<li id="save__menuitem" disabled class="mdl-menu__item"><i class="material-icons">save</i>Save</li>
+					<li id="export__menuitem" disabled class="mdl-menu__item"><i class="material-icons">publish</i>Export</li>
+					<li class="mdl-menu__separator"></li>
+					<li id="close__menuitem" class="mdl-menu__item"><i class="material-icons">close</i>Close</li>
+				</ul>
+			</main>
 		</div>
 	</body>
 </html>
