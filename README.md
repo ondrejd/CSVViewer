@@ -10,7 +10,7 @@ See [doc/README.md](doc/README.md) for more details.
 
 ## Notes for developers
 
-__CSVViewer__ is developed using [Mozilla Add-on SDK](https://developer.mozilla.org/en-US/Add-ons/SDK) with new command-line tool called [JPM](https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Getting_Started_%28jpm%29) and [Material Design Lite](https://github.com/google/material-design-lite) library from Google.
+__CSVViewer__ is developed using [Mozilla Add-on SDK](https://developer.mozilla.org/en-US/Add-ons/SDK) with new command-line tool called [JPM](https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Getting_Started_%28jpm%29) and [Google Material Design Lite](https://github.com/google/material-design-lite) library.
 
 Here are all neccessary commands:
 
@@ -20,10 +20,8 @@ git clone https://github.com/ondrejd/CSVViewer.git csvviewer
 # Enter sources folders and download libraries
 cd csvviewer
 npm udpate
-# Run tests
-jpm test -b \path\to\firefox --debug
 # Execute development version
-jpm run -b \path\to\firefox
+jpm run -b \path\to\firefox --debug
 # Build XPI
 jpm xpi
 ```
