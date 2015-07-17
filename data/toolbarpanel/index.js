@@ -16,7 +16,6 @@ function onClick(aEvent) {
 		case 'open'    : addon.port.emit('openCmd'); break;
 		case 'settings': addon.port.emit('settingsCmd'); break;
 		case 'homepage': addon.port.emit('homepageCmd'); break;
-		case 'donate'  : addon.port.emit('donateCmd'); break;
 	}
 } // end onClick()
 
@@ -26,7 +25,6 @@ addon.port.on('show', function onShow() {
 	document.getElementById('open').addEventListener('click', onClick, false);
 	document.getElementById('settings').addEventListener('click', onClick, false);
 	document.getElementById('homepage').addEventListener('click', onClick, false);
-	document.getElementById('donate').addEventListener('click', onClick, false);
 });
 
 // Remove registered event listeners when panel is hiding.
@@ -35,5 +33,4 @@ addon.port.on('hide', function onHide() {
 	document.getElementById('open').removeEventListener('click', onClick, false);
 	document.getElementById('settings').removeEventListener('click', onClick, false);
 	document.getElementById('homepage').removeEventListener('click', onClick, false);
-	document.getElementById('donate').removeEventListener('click', onClick, false);
 });
