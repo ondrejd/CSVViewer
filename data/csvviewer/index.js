@@ -170,14 +170,12 @@ function onCloseMenuitemClick(aEvent) {
 function onReady(aCsvDocument) {
 	// Menuitem "Close"
 	var closeMenuitem = document.getElementById('close__menuitem');
-	console.log(closeMenuitem);
 	if (closeMenuitem !== undefined) {
 		closeMenuitem.addEventListener('click', onCloseMenuitemClick, false);
 	}
 
 	// Create data table
 	var content = document.getElementById('content__containter');
-	console.log(content);
 	if (content !== undefined) {
 		createTable(content, 'dataTable', aCsvDocument);
 	}

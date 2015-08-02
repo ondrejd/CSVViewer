@@ -7,11 +7,25 @@ let panels = require('sdk/panel');
 let self = require('sdk/self');
 let tabs = require('sdk/tabs');
 let { ToggleButton } = require('sdk/ui/button/toggle');
-let cmds = require('./lib/commands.js');
+let { TextDecoder, OS } = Cu.import('resource://gre/modules/osfile.jsm');
+let doc = require('./lib/doc.js');
+let utils = require('./lib/utils.js');
 
 Cu.import('resource://gre/modules/Services.jsm');
 
 // TODO Use `_('label') for strings!!!
+
+/**
+ * Add-on's identifier (located in `package.json`).
+ * @type {String}
+ */
+const ADDON_ID = require('../package.json').id;
+
+/**
+ * Add-on's homepage URL (located in `package.json`).
+ * @type {String}
+ */
+const HOMEPAGE_URL = require('../package.json').homepage;
 
 /**
  * Data loaded from the current CSV document.
@@ -64,26 +78,79 @@ gToolbarPanel.on('hide', function() {
 // Handle new CSV file command.
 gToolbarPanel.port.on('newCmd', function() {
 	gToolbarPanel.hide();
-	cmds.cmdNew();
+	openMainPage(doc.createBlankDocument());
 });
 
 // Handle open CSV file command.
 gToolbarPanel.port.on('openCmd', function() {
 	gToolbarPanel.hide();
-	cmds.cmdOpen();
+
+	let path = utils.filepicker();
+	if (path === '') {
+		return;
+	}
+
+	let promise = OS.File.read(path);
+	promise = promise.then(
+		function onSuccess(aData) {
+			let decoder = new TextDecoder();
+			let csv = decoder.decode(aData);
+
+			openMainPage(doc.createDocument(csv));
+		}
+	);
 });
 
 // Handle show add-on settings command.
 gToolbarPanel.port.on('settingsCmd', function() {
 	gToolbarPanel.hide();
-	cmds.cmdSettings();
+
+	Services.wm.getMostRecentWindow('navigator:browser').
+		BrowserOpenAddonsMgr('addons://detail/' + ADDON_ID + '/preferences');
 });
 
 // Handle homepage command.
 gToolbarPanel.port.on('homepageCmd', function() {
 	gToolbarPanel.hide();
-	cmds.cmdHomepage();
+
+	utils.openTab(HOMEPAGE_URL);
 });
+
+// ==========================================================================
+// Functions for the main CsvViewer's page.
+
+/**
+ * Opens new tab with main page.
+ * @param {CsvDocument} aCsvDocument
+ */
+function openMainPage(aCsvDocument) {
+	tabs.open({
+		url: self.data.url('csvviewer/index.html'),
+		onReady: function (aTab) {
+			onMainPageReady(aTab, aCsvDocument);
+		}
+	});
+} // end openMainPage(aCsvDocument)
+
+/**
+ * Called when tab with the main page is ready.
+ * @param {Tab} aTab
+ * @param {CsvDocument} aCsvDocument 
+ */
+function onMainPageReady(aTab, aCsvDocument) {
+	// Attach the worker
+	let worker = aTab.attach({
+		contentScriptFile: self.data.url('csvviewer/index.js')
+	});
+
+	// Listen for request for closing the page
+	worker.port.on('close_page', function() {
+		aTab.close();
+	});
+
+	// Pass resulting object to the tab
+	worker.port.emit('ready', aCsvDocument);
+} // end onMainPageReady(aTab, aCsvDocument)
 
 // ==========================================================================
 // Observers
